@@ -4,7 +4,7 @@
 
 | フォルダ | 内容 | 記事 |
 |---|---|---|
-| dmvpn-phase1 | DMVPN Phase 1（NHRP登録とEIGRP確立のパケットキャプチャ） | [（記事URL）](https://www.tech-lablog.com/dmvpn-nhrp-packet-capture/) |
+| dmvpn-phase1 | DMVPN Phase 1（NHRP登録とEIGRP確立のパケットキャプチャ） | [DMVPNの仕組みをパケットで解説｜NHRP登録とEIGRP確立を検証](https://www.tech-lablog.com/dmvpn-nhrp-packet-capture/) |
 
 ## 注意事項
 - 検証環境用の設定です。パスワードや鍵などは実際の値から置き換えています。
