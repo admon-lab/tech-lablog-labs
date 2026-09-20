@@ -1,0 +1,55 @@
+SPOKE-RT-01#show dmvpn
+Legend: Attrb --> S - Static, D - Dynamic, I - Incomplete
+	N - NATed, L - Local, X - No Socket
+	T1 - Route Installed, T2 - Nexthop-override
+	C - CTS Capable
+	# Ent --> Number of NHRP entries with same NBMA peer
+	NHS Status: E --> Expecting Replies, R --> Responding, W --> Waiting
+	UpDn Time --> Up or Down Time for a Tunnel
+==========================================================================
+
+Interface: Tunnel0, IPv4 NHRP Details 
+Type:Spoke, NHRP Peers:1, 
+
+ # Ent  Peer NBMA Addr Peer Tunnel Add State  UpDn Tm Attrb
+ ----- --------------- --------------- ----- -------- -----
+     1 198.51.100.1           10.0.0.1    UP 00:05:11     S
+
+SPOKE-RT-01#
+SPOKE-RT-01#show ip nhrp
+10.0.0.1/32 via 10.0.0.1
+   Tunnel0 created 00:05:31, never expire 
+   Type: static, Flags: 
+   NBMA address: 198.51.100.1 
+SPOKE-RT-01#show ip nhrp nhs detail
+Legend:	E=Expecting replies, R=Responding, W=Waiting
+Tunnel0:
+10.0.0.1  RE NBMA Address: 198.51.100.1 priority = 0 cluster = 0  req-sent 1  req-failed 0  repl-recv 1 (00:05:29 ago)
+
+SPOKE-RT-01#
+SPOKE-RT-01#
+SPOKE-RT-01#show ip route eigrp
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP
+       a - application route
+       + - replicated route, % - next hop override
+
+Gateway of last resort is 198.51.100.5 to network 0.0.0.0
+
+D     192.168.0.0/24 [90/27008000] via 10.0.0.1, 00:05:38, Tunnel0
+D     192.168.2.0/24 [90/28288000] via 10.0.0.1, 00:05:37, Tunnel0
+SPOKE-RT-01#
+SPOKE-RT-01#
+SPOKE-RT-01#
+SPOKE-RT-01#traceroute 192.168.2.1 source lo1
+Type escape sequence to abort.
+Tracing the route to 192.168.2.1
+VRF info: (vrf in name/id, vrf out name/id)
+  1 10.0.0.1 5 msec 1 msec 1 msec
+  2 10.0.0.12 2 msec 1 msec 1 msec
+SPOKE-RT-01#
